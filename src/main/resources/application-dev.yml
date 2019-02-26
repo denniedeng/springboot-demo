@@ -1,0 +1,31 @@
+eureka: #eurka配置
+  client:
+    fetch-registry: false #禁止自己发现自己的服务
+    register-with-eureka: false #禁止自己发现自己的服务
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+logging: #定义日志输入文件路径
+  file: springboot.log
+  level:
+    com:
+      xx: DEBUG
+  path: F:log
+name: dev-test-yml #标注此配置是开发环境使用
+server:
+  port: 8081
+spring:
+  datasource: #数据库连接配置
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 111111
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+  profiles:
+    active: dev
+  redis: #redis数据库配置
+    host: localhost
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    port: 6379

@@ -1,0 +1,13 @@
+spring: 
+  application:
+    name: spirng-cloud-server #应用名称
+  profiles:
+    active: dev #配置当前使用环境
+    
+upload:
+  #单个文件最大值，单位KB
+  oneMaxSize: 500
+  #单次上传最大文件数
+  maxNum: 9
+  #允许上传的文件后缀类型
+  fileType: jpg,png,jpeg,bmp
