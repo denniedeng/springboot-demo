@@ -28,7 +28,8 @@ public class CloudInitMainApplication
     public static void main(String[] args)
     {
     	System.out.println("test commit");
-        SpringApplication.run(CloudInitMainApplication.class, args);
+    	System.out.println("test jenkins work?");
+//        SpringApplication.run(CloudInitMainApplication.class, args);
     }
 
 }
