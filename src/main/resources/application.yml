@@ -2,7 +2,7 @@ spring:
   application:
     name: spirng-cloud-server #应用名称
   profiles:
-    active: dev #配置当前使用环境
+    active: test #配置当前使用环境
     
 upload:
   #单个文件最大值，单位KB
