@@ -3,6 +3,7 @@
  */
 package com.xx;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 
  * @author 邓锦烨 2017-11-1
  */
-
+@Slf4j
 @SpringBootApplication  /** 设置此类为spring boot的启动入口 */
 @EnableTransactionManagement    /** 开启事务功能 */
 @EnableScheduling   /** 开启定时器功能 */
@@ -30,6 +31,8 @@ public class CloudInitMainApplication
     	System.out.println("test commit");
     	System.out.println("test jenkins work?");  
         SpringApplication.run(CloudInitMainApplication.class, args);
+
+        System.out.println("started!");
     }
 
 }

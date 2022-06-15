@@ -6,8 +6,9 @@ package com.xx.controller.test;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Size;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -23,12 +24,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * 
  * @author 邓锦烨 2017-11-3
  */
+@Slf4j
 @Aspect
 @Component
 public class RequestLogAspect
 {
-    private Logger logger = Logger.getLogger(getClass());
-
     ThreadLocal<Long> startTime = new ThreadLocal<>();
     
     @Pointcut("execution(public * com.xx.controller..*.*(..))")
@@ -44,11 +44,11 @@ public class RequestLogAspect
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         // 记录下请求内容
-        logger.debug("URL : " + request.getRequestURL().toString());
-        logger.debug("HTTP_METHOD : " + request.getMethod());
-        logger.debug("IP : " + request.getRemoteAddr());
-        logger.debug("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        logger.debug("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+        log.debug("URL : " + request.getRequestURL().toString());
+        log.debug("HTTP_METHOD : " + request.getMethod());
+        log.debug("IP : " + request.getRemoteAddr());
+        log.debug("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        log.debug("ARGS : " + Arrays.toString(joinPoint.getArgs()));
     }
 
     @AfterReturning(returning = "ret", pointcut = "requestLog()")
@@ -56,7 +56,7 @@ public class RequestLogAspect
     public void doAfterReturning(Object ret) throws Throwable
     {
         // 处理完请求，返回内容
-        logger.debug("RESPONSE : " + ret);
+        log.debug("RESPONSE : " + ret);
         System.out.println("system current time is " + System.currentTimeMillis());
         System.out.println("startTime is " + startTime);
         System.out.println("get method is " + startTime.get());
